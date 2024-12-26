@@ -1,0 +1,213 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hearts {
+    margin-top: 40px;
+    display: inline-block;
+    margin-bottom: 2rem;
+    cursor: pointer;
+}
+
+.heart {
+    width: 70px;
+    height: 70px;
+    background: #ff6b6b;
+    transform: rotate(45deg);
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 70px;
+    height: 70px;
+    background: #ff6b6b;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -35px;
+    left: 0;
+}
+
+.heart::after {
+    left: -35px;
+    top: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    margin: auto;
+}
+
+.image-grid img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-grid img:nth-child(4),
+.image-grid img:nth-child(5) {
+    grid-column: span 1;
+    justify-self: center;
+}
+
+#thai-message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    animation: wave-animation 1.5s ease-in-out infinite;
+}
+
+@keyframes wave-animation {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%,
+    100% {
+        transform: scale(1) rotate(45deg);
+    }
+    25% {
+        transform: scale(1.2) rotate(45deg);
+    }
+    50% {
+        transform: scale(1) rotate(45deg);
+    }
+}
+
+
+/* เพิ่มการเคลื่อนไหวให้หัวใจลอย */
+
+@keyframes floating {
+    0%,
+    100% {
+        transform: translateY(0) rotate(45deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+}
+
+
+/* ใช้แอนิเมชันกับหัวใจ */
+
+.heart {
+    animation: heartbeat 1.5s infinite ease-in-out, floating 3s infinite ease-in-out;
+}
+
+.image-grid img {
+    transition: transform 0.3s ease-in-out;
+    /* ทำให้การขยายค่อยๆ เกิดขึ้น */
+}
+
+.image-grid img:hover {
+    transform: scale(1.2);
+    /* ขยายภาพ 1.2 เท่าของขนาดเดิม */
+}
+
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: repeat(2, 2fr);
+        /* แสดง 2 คอลัมน์ */
+        max-width: 300px;
+    }
+    .image-grid img {
+        width: 150px;
+        height: 150px;
+    }
+    #thai-message {
+        font-size: 1.2rem;
+    }
+    .heart {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heart {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+
+/* Media Queries สำหรับอุปกรณ์มือถือขนาดเล็ก (เช่นมือถือขนาด 480px) */
+
+@media (max-width: 300px) {
+    h1 {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    .image-grid {
+        grid-template-columns: repeat(2, 2fr);
+        /* แสดง 2 คอลัมน์ */
+        max-width: 300px;
+    }
+    .image-grid img {
+        width: 120px;
+        height: 120px;
+    }
+    #thai-message {
+        font-size: 0.85rem;
+    }
+    .heart {
+        width: 70px;
+        height: 70px;
+    }
+}
